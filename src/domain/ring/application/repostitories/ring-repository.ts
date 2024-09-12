@@ -5,7 +5,4 @@ export abstract class RingRepository{
   abstract save(data: Ring): Promise<Ring>;
   abstract existingRings(data: forgedBy): Promise<Ring[]|null>;
   abstract rings(): Promise<Ring[]>;
-
-
-
 }
