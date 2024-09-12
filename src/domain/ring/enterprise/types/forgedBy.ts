@@ -1,0 +1,1 @@
+export type forgedBy = 'Elfos'|'Anões'|'Homens'|'Sauron'
