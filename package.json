@@ -1,0 +1,12 @@
+{
+  "name": "junior-challenge",
+  "version": "1.0.0",
+  "description": "_One Challenge to rule them all, One Challenge to find them, One Challenge to bring them all, and in the darkness bind them_",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Matheus Mendes Dos Reis",
+  "license": "ISC"
+}
