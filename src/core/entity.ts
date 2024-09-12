@@ -8,6 +8,10 @@ export abstract class Entity<Props> {
     return this._id
   }
 
+  get getProps() {
+    return this.props
+  }
+
   protected constructor(props: Props, id?: UniqueEntityId) {
     this._id = id ?? new UniqueEntityId()
     this.props = props
@@ -16,4 +20,6 @@ export abstract class Entity<Props> {
   public equals(entity: Entity<any>) {
     return entity === this || entity._id === this.id
   }
+
+  
 }
