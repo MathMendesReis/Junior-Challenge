@@ -3,7 +3,7 @@ import type { Ring } from "../../../domain/ring/enterprise/model/ring";
 import type { forgedBy } from "../../../domain/ring/enterprise/types/forgedBy";
 
 export class  InMemoryRingDatabase implements RingRepository{
- 
+  
   public items: Ring[] = [
     
   ]
@@ -13,6 +13,9 @@ export class  InMemoryRingDatabase implements RingRepository{
     Homens: 9,
     Sauron: 1,
   };
+  async deleteById(id: string): Promise<void> {
+    this.items = this.items.filter(item => item.id.toString() !== id)
+  }
 
   async save(ring: Ring): Promise<Ring> {
     this.items.push(ring)
@@ -27,9 +30,9 @@ export class  InMemoryRingDatabase implements RingRepository{
   }
 
 
- async rings(): Promise<Ring[]> {
-   return this.items;
- }
+    async rings(): Promise<Ring[]> {
+      return this.items;
+    }
 
 }
 
