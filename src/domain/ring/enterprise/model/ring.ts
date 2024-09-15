@@ -8,6 +8,7 @@ export interface RingProps{
   power: string;
   forgedBy: forgedBy;
   imageURL: string;
+  userId:string
 }
 export class Ring extends Entity<RingProps> {
 
