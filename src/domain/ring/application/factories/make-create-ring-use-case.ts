@@ -1,9 +1,9 @@
-import { InMemoryRingDatabase } from "../../../../infra/database/in-memory/in-memory-ring-database";
+import TypeormRingsRepo from "../../../../infra/database/orm/repositorie/typeormRingsRepo";
 import { CreateRingUseCase } from "../use-case/create-ring-use-case";
 
 export function makeCreateRingUseCase() {
-  const inMemoryRepository = new InMemoryRingDatabase();
-  const createRingUseCase = new CreateRingUseCase(inMemoryRepository);
+  const typeormRingsRepo = new TypeormRingsRepo();
+  const createRingUseCase = new CreateRingUseCase(typeormRingsRepo);
   return createRingUseCase
 }
 
