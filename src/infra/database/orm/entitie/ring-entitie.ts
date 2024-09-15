@@ -12,4 +12,6 @@ export class RingDB {
     forgedBy: forgedBy;
     @Column({ nullable: false, type:'text' })
     imageURL: string;
+    @Column({ nullable: false, type:'text' })
+    userId: string;
   }
