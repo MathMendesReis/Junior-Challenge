@@ -1,13 +1,17 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { makeDeleteRingByIdUseCase } from '../../../../domain/ring/application/factories/make-delete-ring-by-id-use-case';
+import { AppError } from '../../../utils/app-error';
 
 const router = Router()
 router.delete('/ring/:id', async (req: Request, res: Response, next: NextFunction) => {
-  const { id } = req.params
   try {
-     const result = 'execute'
-    res.status(200).json({id});
+    const { id } = req.params
+     const result = await makeDeleteRingByIdUseCase().execute(id)
+    res.status(200).json(result);
   } catch (error) {
-      res.status(400).json({message:error});
+      if (error instanceof AppError) {
+        res.status(error.statusCode).json({message:error.message});
+      }
   }
 
 })
