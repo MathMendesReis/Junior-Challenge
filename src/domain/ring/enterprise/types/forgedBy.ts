@@ -1,1 +1,1 @@
-export type forgedBy = 'Elfos'|'Anões'|'Homens'|'Sauron'
+export type forgedBy = 'Elfos'|'Anoes'|'Homens'|'Sauron'
