@@ -2,7 +2,6 @@ import { Ring, type RingProps } from "../../enterprise/model/ring";
 import type { RingRepository } from "../repostitories/ring-repository";
 import type { forgedBy } from "../../enterprise/types/forgedBy";
 import { AppError } from "../../../../infra/utils/app-error";
-import type { RingDB } from "../../../../infra/database/orm/entitie/ring-entitie";
 
 
 export interface CreateRingRequestDTO{
@@ -35,6 +34,7 @@ export class CreateRingUseCase{
       }
     }
     const newRing = Ring.create({name,power,forgedBy,imageURL,userId})
-    return await this.ringRepository.saveRing(newRing)
+    const result = await this.ringRepository.saveRing(newRing)
+    return result
   }
 }

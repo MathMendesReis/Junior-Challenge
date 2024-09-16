@@ -17,7 +17,7 @@ router.post('/ring/:userId', async (req: Request, res: Response, next: NextFunct
      const result = await makeCreateRingUseCase().execute({
       name,forgedBy,imageURL,power,userId
      })
-    return res.status(201).json({result});
+    return res.status(201).json(result);
   } catch (error) {
     if(error instanceof ZodError){
       res.status(400).json({message:error.message, issues:error.format()});

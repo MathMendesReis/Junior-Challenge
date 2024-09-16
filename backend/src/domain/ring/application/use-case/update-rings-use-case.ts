@@ -29,11 +29,9 @@ export class UpdateRingUseCase{
       imageURL:imageURL ?? ring.power,
       userId
     })
-
     await this.ringRepository.updateRingById(id, update)
-
     return {
-      props:update.getProps,
+      message:'sucess'
     }
   }
 }
