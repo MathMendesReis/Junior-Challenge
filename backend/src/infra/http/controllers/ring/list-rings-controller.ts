@@ -5,7 +5,7 @@ const router = Router()
 router.get('/ring', async (req: Request, res: Response, next: NextFunction) => {
   try {
      const result = await makeListRingsUseCase().execute()
-    res.status(200).json({rings: result});
+    res.status(200).json(result);
   } catch (error) {
       res.status(400).json({message:error});
   }

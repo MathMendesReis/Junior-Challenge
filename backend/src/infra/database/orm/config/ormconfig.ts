@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm"
-import { RingDB } from "../entitie/ring-entitie"
+import { RingEntity } from "../entitie/ring-entitie"
 
 export const myDataSource = new DataSource({
     type: "postgres",
@@ -8,7 +8,7 @@ export const myDataSource = new DataSource({
     username: "ring_db",
     password: "ring_db",
     database: "ring_db",
-    entities: [RingDB],
-    logging: true,
+    entities: [RingEntity],
+    logging: false,
     synchronize: true,
 })

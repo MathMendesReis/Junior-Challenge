@@ -1,8 +1,8 @@
 import { Ring, type RingProps } from "../../enterprise/model/ring";
-import type { RingRepository } from "../repostitories/ring-repository";
 import type { forgedBy } from "../../enterprise/types/forgedBy";
 import { AppError } from "../../../../infra/utils/app-error";
-import type { RingDB } from "../../../../infra/database/orm/entitie/ring-entitie";
+import type { UpdateRingByIdRepository } from "../repostitories/update-ring-repository";
+import type { FindRingByIdRepository } from "../repostitories/find-ring-by-id-repository";
 
 
 export interface updateRingRequestDTO{
@@ -13,25 +13,30 @@ export interface updateRingRequestDTO{
   imageURL?: string;
 }
 export class UpdateRingUseCase{
-  constructor(private readonly ringRepository:RingRepository){}
-  async execute({id,forgedBy,imageURL,name,power}:updateRingRequestDTO){
-    const existingRings = await this.ringRepository.findRingById(id)
+  constructor(
+    private readonly updateRingById:UpdateRingByIdRepository,
+    private readonly findRingById:FindRingByIdRepository
 
-    if(existingRings.length === 0){
+  ){}
+  async execute({id,forgedBy,imageURL,name,power}:updateRingRequestDTO){
+    const existingRings = await this.findRingById.findRingById(id)
+
+    if(!existingRings){
       throw new AppError('Not found', 404)
     }
-    const [ring] = existingRings
-    const userId = ring.userId
-    const update = Ring.create({
-      name:name ?? ring.name,
-      power:power ?? ring.power,
-      forgedBy:forgedBy ?? ring.forgedBy,
-      imageURL:imageURL ?? ring.power,
-      userId
+    const update = this.updateRing({id,forgedBy,imageURL,name,power},existingRings)
+
+    return await this.updateRingById.updateRingById(update)
+  }
+
+  private updateRing({id,forgedBy,imageURL,name,power}:updateRingRequestDTO,existingRings: Ring){
+    return new Ring({
+      id: existingRings.getId,
+      name: name?? existingRings.getName,
+      power: power?? existingRings.getPower,
+      forgedBy: forgedBy?? existingRings.getForgedBy,
+      imageURL: imageURL?? existingRings.getImageUrl,
+      userId:existingRings.getUserId
     })
-    await this.ringRepository.updateRingById(id, update)
-    return {
-      message:'sucess'
-    }
   }
 }

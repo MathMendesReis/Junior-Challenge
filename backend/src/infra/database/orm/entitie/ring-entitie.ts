@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import type { forgedBy } from "../../../../domain/ring/enterprise/types/forgedBy";
 @Entity()
-export class RingDB {
+export class RingEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
     @Column({ nullable: false, type:'text' })

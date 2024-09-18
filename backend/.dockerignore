@@ -1,0 +1,6 @@
+!README*.md
+/migrations
+/docker
+/node_modules
+Dockerfile
+.gitignore

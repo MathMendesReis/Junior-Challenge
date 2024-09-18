@@ -1,10 +1,12 @@
-import TypeormRingsRepo from "../../../../infra/database/orm/repositorie/typeormRingsRepo";
+import TypeormRingsRepo from "../../../../infra/database/orm/repositorie/example";
+import { TypeormDeleteRingByIdRepo } from "../../../../infra/database/orm/repositorie/TypeormDeleteRingByIdRepo";
+import TypeormFindRingByIdRingsRepo from "../../../../infra/database/orm/repositorie/TypeormFindRingByIdRingsRepo";
 import { DeleteRingByIdUseCase } from "../use-case/delete-ring-by-id-use-case";
-import { ListRingsUseCase } from "../use-case/list-rings-use-case";
 
 export function makeDeleteRingByIdUseCase() {
-  const typeormRingsRepo = new TypeormRingsRepo();
-  const instance = new DeleteRingByIdUseCase(typeormRingsRepo);
+  const deleteService = new TypeormDeleteRingByIdRepo()
+  const FindRingByIdService = new TypeormFindRingByIdRingsRepo()
+  const instance = new DeleteRingByIdUseCase(FindRingByIdService,deleteService);
   return instance
 }
 

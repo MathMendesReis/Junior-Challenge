@@ -6,4 +6,5 @@ services:
       POSTGRES_PASSWORD: ring_db
       POSTGRES_DB: ring_db
     ports:
-      - "5432:5432"
+      - 5432:5432
+  

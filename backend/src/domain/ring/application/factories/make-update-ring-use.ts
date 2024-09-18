@@ -1,7 +1,10 @@
-import TypeormRingsRepo from "../../../../infra/database/orm/repositorie/typeormRingsRepo";
+import TypeormRingsRepo from "../../../../infra/database/orm/repositorie/example";
+import TypeormFindRingByIdRingsRepo from "../../../../infra/database/orm/repositorie/TypeormFindRingByIdRingsRepo";
+import { TypeormUpdateRIngRepo } from "../../../../infra/database/orm/repositorie/typeormUpdateRingRepo";
 import { UpdateRingUseCase } from "../use-case/update-rings-use-case";
 export function makeUpdateRingUseCase() {
-  const typeormRingsRepo = new TypeormRingsRepo();
-  const instace = new UpdateRingUseCase(typeormRingsRepo);
+  const typeormUpdateRIngRepo = new TypeormUpdateRIngRepo();
+  const typeormFindRingByIdRingsRepo = new TypeormFindRingByIdRingsRepo()
+  const instace = new UpdateRingUseCase(typeormUpdateRIngRepo,typeormFindRingByIdRingsRepo);
   return instace
 }

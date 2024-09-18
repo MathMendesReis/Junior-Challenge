@@ -1,6 +1,5 @@
-import { Entity } from "../../../../core/entity";
-import type { UniqueEntityId } from "../../../../core/unique-entity";
 import type { forgedBy } from "../types/forgedBy";
+import { randomUUID } from 'node:crypto'
 
 export interface RingProps{
   id?: string;
@@ -10,19 +9,39 @@ export interface RingProps{
   imageURL: string;
   userId:string
 }
-export class Ring extends Entity<RingProps> {
-
-  static create(
-    props: RingProps,
-    id?: UniqueEntityId,
-  ) {
-    const ring = new Ring(
-      {
-        ...props,
-      },
-      id,
-    )
-
-    return ring
+export class Ring {
+  private id: string;
+  private name: string;
+  private power: string;
+  private forgedBy: forgedBy;
+  private imageURL: string;
+  private userId:string
+  constructor({forgedBy,imageURL,name,power,userId,id}:RingProps){
+    this.id = id ?? randomUUID()
+    this.name = name,
+    this.power = power,
+    this.forgedBy = forgedBy,
+    this.imageURL = imageURL,
+    this.userId = userId
   }
+  public get getId(){
+    return this.id
+  }
+ 
+  public get getName(){
+    return this.name
+  }
+  public get getPower(){
+    return this.power
+  }
+  public get getForgedBy(){
+    return this.forgedBy
+  }
+  public get getImageUrl(){
+    return this.imageURL
+  }
+  public get getUserId(){
+    return this.userId
+  }
+  
 }
